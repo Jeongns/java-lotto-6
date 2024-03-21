@@ -1,7 +1,7 @@
 package lotto;
 
-import lotto.lotto.Lotto;
-import lotto.lotto.LottoMachine;
+import lotto.ticket.Ticket;
+import lotto.ticket.TicketMachine;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +15,7 @@ class LottoMachineTest {
     @ValueSource(ints = 1234)
     @DisplayName("옳바르지 않은 금액이 들어올 경우 에러를 발생 시킨다.")
     void validIncorrectAmountError(int money) {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> LottoMachine.buyLottoTickets(money));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> TicketMachine.buyLottoTickets(money));
     }
 
     @ParameterizedTest
@@ -23,7 +23,7 @@ class LottoMachineTest {
     @DisplayName("로또를 정상적으로 구매하는지 확인한다.")
     void validBuyLottoTickets(int money) {
         //when
-        List<Lotto> lottos = LottoMachine.buyLottoTickets(money);
+        List<Ticket> lottos = TicketMachine.buyLottoTickets(money);
         //then
         Assertions.assertEquals(lottos.size(), 5);
     }

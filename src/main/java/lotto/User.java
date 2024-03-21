@@ -1,7 +1,7 @@
 package lotto;
 
-import lotto.lotto.Lotto;
-import lotto.lotto.LottoMachine;
+import lotto.ticket.Ticket;
+import lotto.ticket.TicketMachine;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ public class User {
 
     private final int purchaseAmount;
 
-    private final List<Lotto> lottoTickets;
+    private final List<Ticket> tickets;
 
     public User(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
-        this.lottoTickets = LottoMachine.buyLottoTickets(purchaseAmount);
+        this.tickets = TicketMachine.buyLottoTickets(purchaseAmount);
     }
 
     public int getPurchaseAmount() {
