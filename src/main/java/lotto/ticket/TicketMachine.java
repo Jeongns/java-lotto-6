@@ -1,5 +1,7 @@
 package lotto.ticket;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class TicketMachine {
 
         List<Ticket> tickets = new ArrayList<>();
         for (int i = 0; i < money; i += TICKET_PRICE) {
-            tickets.add(new Ticket());
+            tickets.add(new Ticket(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
 
         return tickets;
