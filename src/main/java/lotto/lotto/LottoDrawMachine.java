@@ -2,6 +2,8 @@ package lotto.lotto;
 
 import lotto.ticket.Ticket;
 
+import java.util.List;
+
 public class LottoDrawMachine {
 
     private Lotto lotto;
@@ -12,7 +14,13 @@ public class LottoDrawMachine {
         this.bonusNumber = bonusNumber;
     }
 
-    public LottoRank compareTicket(Ticket ticket) {
+    public void compareTickets(List<Ticket> tickets) {
+        for (Ticket ticket : tickets) {
+            ticket.setLottoRank(compareTicket(ticket));
+        }
+    }
+
+    private LottoRank compareTicket(Ticket ticket) {
         long duplicateTicketCount = countDuplicateTicket(ticket);
 
         if (duplicateTicketCount == 6)
@@ -26,14 +34,13 @@ public class LottoDrawMachine {
         if (duplicateTicketCount == 3)
             return LottoRank.FIFTH;
 
-        return null;
+        return LottoRank.NOTHING;
     }
 
     private long countDuplicateTicket(Ticket ticket) {
         var lottoNumbers = lotto.getNumbers();
         return lottoNumbers.stream()
-                .filter(i -> ticket.contains(i))
+                .filter(ticket::contains)
                 .count();
-
     }
 }

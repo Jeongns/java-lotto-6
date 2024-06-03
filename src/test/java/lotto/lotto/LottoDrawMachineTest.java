@@ -20,21 +20,28 @@ class LottoDrawMachineTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                 7
         );
-        Ticket firstTicket = new Ticket(List.of(1, 2, 3, 4, 5, 6));
-        Ticket secondTicket = new Ticket(List.of(1, 2, 3, 4, 5, 7));
-        Ticket thirdTicket = new Ticket(List.of(1, 2, 3, 4, 5, 8));
-        Ticket fourthTicket = new Ticket(List.of(1, 2, 3, 4, 8, 9));
-        Ticket fifthTicket = new Ticket(List.of(1, 2, 3, 8, 9, 10));
-        Ticket nullTicket = new Ticket(List.of(1, 2, 8, 9, 10, 11));
 
-        // then, when
+        //list of
+        List<Ticket> tickets = List.of(
+                new Ticket(List.of(1, 2, 3, 4, 5, 6)),
+                new Ticket(List.of(1, 2, 3, 4, 5, 7)),
+                new Ticket(List.of(1, 2, 3, 4, 5, 8)),
+                new Ticket(List.of(1, 2, 3, 4, 8, 9)),
+                new Ticket(List.of(1, 2, 3, 8, 9, 10)),
+                new Ticket(List.of(1, 2, 8, 9, 10, 11))
+        );
+
+        //when
+        lottoDrawMachine.compareTickets(tickets);
+
+        // then
         Assertions.assertAll(
-                () -> assertEquals(LottoRank.FIRST, lottoDrawMachine.compareTicket(firstTicket)),
-                () -> assertEquals(LottoRank.SECOND, lottoDrawMachine.compareTicket(secondTicket)),
-                () -> assertEquals(LottoRank.THIRD, lottoDrawMachine.compareTicket(thirdTicket)),
-                () -> assertEquals(LottoRank.FOURTH, lottoDrawMachine.compareTicket(fourthTicket)),
-                () -> assertEquals(LottoRank.FIFTH, lottoDrawMachine.compareTicket(fifthTicket)),
-                () -> assertNull(lottoDrawMachine.compareTicket(nullTicket))
+                () -> assertEquals(LottoRank.FIRST, tickets.get(0).getLottoRank()),
+                () -> assertEquals(LottoRank.SECOND, tickets.get(1).getLottoRank()),
+                () -> assertEquals(LottoRank.THIRD, tickets.get(2).getLottoRank()),
+                () -> assertEquals(LottoRank.FOURTH, tickets.get(3).getLottoRank()),
+                () -> assertEquals(LottoRank.FIFTH, tickets.get(4).getLottoRank()),
+                () -> assertEquals(LottoRank.NOTHING, tickets.get(5).getLottoRank())
         );
     }
 
